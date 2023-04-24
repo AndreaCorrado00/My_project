@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/AddActivity.dart';
 import 'package:my_project/screens/CurrentTarget.dart';
+import 'package:my_project/screens/ProfileScreen.dart';
 import 'package:my_project/screens/constants.dart';
+import 'package:profile/profile.dart';
 
 
 class HomePageState extends StatefulWidget {
@@ -56,7 +58,7 @@ class HomePage extends State<HomePageState>{
               children: [
                 TextButton(
                 style: _TextButtonStyle_Drawer,
-              onPressed: () { },
+              onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context) => ProfileScreen()));},
               child: const Text('Profile'),),
               Icon(
                   IconData(0xe491, fontFamily: 'MaterialIcons'),
