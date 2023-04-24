@@ -1,0 +1,247 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
+import 'package:my_project/screens/AddActivity.dart';
+import 'package:my_project/screens/CurrentTarget.dart';
+import 'package:my_project/screens/constants.dart';
+
+
+class HomePageState extends StatefulWidget {
+  const HomePageState ({super.key});
+
+  @override
+  State<HomePageState > createState() => HomePage();
+}
+
+
+
+class HomePage extends State<HomePageState>{
+  static final _TextButtonStyle_Drawer=TextButton.styleFrom(
+                foregroundColor: secondarylightColor,
+                shadowColor: secondaryColor,
+                fixedSize: const Size(250, 50),
+                alignment: const Alignment(-0.8, 0),
+                textStyle: const TextStyle(
+                fontFamily: myfontFamily,
+                fontSize: 20.0,
+              ));
+  static final _TextButtonStyle_HomePage=TextStyle(
+                        fontFamily: myfontFamily,
+                        fontSize: 25.0,
+                        color:secondaryColor,
+                      );
+
+  
+  static const routename = 'Homepage';
+  
+  int _selectedIndex = 0;
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    print('${HomePage.routename} built');
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        title: Text(HomePage.routename),
+        
+      ),
+      drawer: Drawer(
+        backgroundColor: secondaryColor,
+        child: Column(
+          children: [
+            SizedBox(height: 100,),
+            Row(
+              children: [
+                TextButton(
+                style: _TextButtonStyle_Drawer,
+              onPressed: () { },
+              child: const Text('Profile'),),
+              Icon(
+                  IconData(0xe491, fontFamily: 'MaterialIcons'),
+                  color: secondarylightColor,
+                  size: 24.0,
+                  semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+              ],
+            
+            ),
+            SizedBox(width: 300,height: 1,),
+            Row(
+              children: [
+                TextButton(
+                style: _TextButtonStyle_Drawer,
+              onPressed: () { },
+              child: const Text('Statistics'),),
+              Icon(
+                  IconData(0xebef, fontFamily: 'MaterialIcons'),
+                  color: secondarylightColor,
+                  size: 24.0,
+                  semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+              ],
+            
+            ),
+            SizedBox(width: 300,height: 1,),
+            Row(
+              children: [
+                TextButton(
+                style: _TextButtonStyle_Drawer,
+              onPressed: () { },
+              child: const Text('Advice and Tips'),),
+              Icon(
+                  Icons.tips_and_updates,
+                  color: secondarylightColor,
+                  size: 24.0,
+                  semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+              ],
+            
+            ),
+            SizedBox(width: 300,height: 1,),
+            Row(
+              children: [
+                TextButton(
+                style: _TextButtonStyle_Drawer,
+              onPressed: () { },
+              child: const Text('Logout'),),
+              Icon(
+                  IconData(0xe3b3, fontFamily: 'MaterialIcons'),
+                  color: secondarylightColor,
+                  size: 24.0,
+                  semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+              ],
+            
+            ),
+            SizedBox(width: 300,height: 1,),
+          ],
+      ),),
+      backgroundColor: primaryLightColor,
+
+      body: Column(
+          
+          children: [
+            
+            SizedBox(height: 300,),
+            Row(
+               mainAxisAlignment: MainAxisAlignment.center,
+               children: [
+                SizedBox(
+                  height: 200,width: 200,
+                  child: 
+                  Column(
+                    children: [
+                      Text('LoS',
+                      style: _TextButtonStyle_HomePage,
+                      ),
+                      Icon(
+                        IconData(0xe07e, fontFamily: 'MaterialIcons'),
+                        color: secondaryColor,
+                        size: 30.0,
+                  ),],),),
+                SizedBox(
+                  height: 200,width: 200,
+                  child:
+                  Column( 
+                    children: [
+                      Text('Trees planted',
+                      style: _TextButtonStyle_HomePage,),
+                      Icon(
+                        IconData(0xf0603, fontFamily: 'MaterialIcons'),
+                        color: secondaryColor,
+                        size: 30.0,
+                      ),],),
+                  ),],),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+               children: [
+                SizedBox(
+                  height: 200,width: 200,
+                  child:Column( 
+                    children: [
+                      Text('Total steps',
+                      style:_TextButtonStyle_HomePage,),
+                      Icon(
+                        IconData(0xf6bd, fontFamily: 'MaterialIcons'),
+                        color: secondaryColor,
+                        size: 30.0,
+                  ),],),),
+                  SizedBox(
+                  height: 200,width: 200,
+                  child:Column( 
+                    children: [
+                      Text('Unused petrol',
+                      style: _TextButtonStyle_HomePage,),
+                      Icon(
+                        IconData(0xea8e, fontFamily: 'MaterialIcons'),
+                        color: secondaryColor,
+                        size: 30.0,
+                  ),],),),
+                 ],
+                ),
+      ],),
+    
+
+    bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.crisis_alert),
+            label: 'Current Target',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box),
+            label: 'New Manual Activity',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        backgroundColor:primaryColor,
+        selectedItemColor: secondarylightColor,
+        selectedFontSize: 14.0,
+        
+        type: BottomNavigationBarType.fixed,
+
+        onTap: (int index) {
+          switch (index) {
+            
+            case 0:
+            print(index);
+                if(index!=0){
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));
+                } else{print('still in the homepage ');}
+                
+              //break;
+            case 1:
+              Navigator.push(context,MaterialPageRoute(builder: (context) => CurrentTargetState()));
+              
+              //break;
+            case 2:
+              
+              Navigator.push(context,MaterialPageRoute(builder: (context) => AddActivityState()));
+              // Probably in this case you have to put an if: if the index is not pointing the home and you are in the case of the home, return to home
+              break;
+              }
+            
+              
+            setState(() {
+              _selectedIndex = index;
+            },);
+         },
+        ),
+
+    //floatingActionButton: FloatingActionButton(
+          //child: const Icon(Icons.add),
+          //onPressed: () {},
+          //backgroundColor: secondaryColor,
+          //elevation: 0.0,
+          //splashColor: primaryLightColor,
+          //),
+    //floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
+    );
+  } //build
+} //HomePage

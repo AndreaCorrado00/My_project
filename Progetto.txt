@@ -1,0 +1,56 @@
+Vorrei un'applicazione che 
+1. Abbia un Login flow
+
+2. Abbia una Home page con:
+	a. un menù a tendina che porti a:
+		a.1: pagina del profilo
+		a.2: pagina delle statistiche 
+		a.3: pagina di informazioni e link per dare info sullo sviluppo sostenibile e gli altri temi della nostra macroarea
+				- Statistiche europee/mondiali (magari previsioni...)
+				- Ricette sostenibili
+				- Mobilità sostenibile
+				- Gender equality
+		a.4: Logout			(come eseguire il logout???)
+
+	b. Una barra inferiore con dei tasti per			
+		b.1: aggiungere una nuova attività manuale
+				- Acqua bevuta oggi
+				- Mezzi presi oggi (Con punteggio sul LoS)
+				- Consumazione di alimenti bio (Con punteggio su LoS)
+				- Acquisto di oggetti di seconda mano
+		b.2: mostrare il prossimo obiettivo da raggiungere (magari con un link ad una pagina...)
+				- 
+
+	c. Abbia un riassunto delle proprie statistiche:
+		c.1: Livello di sostenibilità (con faccina che mostri vari livelli)
+		c.2: Alberi piantati fino a questo momento
+		c.3: Litri di benzina risparmiati fino a questo momento
+		c.4: Km a piedi percorsi fino a questo momento
+	
+	d. Un box con il "consiglio del giorno" (con link all'informazione)
+
+	
+
+3. La pagine del profilo abbia:
+	a. Una foto profilo
+	b. Anagrafica dell'utente
+	c. Un bottone che porti all'elenco dei dispositivi collegati (pagina a parte)
+
+4. La pagina delle statistiche mostri:
+	a. Passi giornalieri in un grafico + info sull'impatto 
+	b. Ore di sonno e qualità del sonno + info sull'impatto
+	c. Grafico del livello di sostenibilità di mese in mese + info sull'impatto
+	d. Grafico dei litri di benzina risparmiati fino a questo momento + info sull'impatto
+	e. Grafico dei Km percorsi a piedi + info sull'impatto
+
+5. Un provider che abbia al suo interno i dati comuni alle varie pagine
+	a. Dati dei passi giornalieri
+	b. Dati dei Km percorsi 
+	c. Dati dei litri di benzina risparmiati
+	d. Dati del sonno 
+	...
+
+6. Ci sia una cartella di costanti che abbia almeno i colori di base e complementari dell'applicazione
+
+LIVELLO DI SOSTENIBILITA': come definirlo?
+
