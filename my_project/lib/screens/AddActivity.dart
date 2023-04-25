@@ -69,15 +69,15 @@ class AddActivity extends State<AddActivityState> {
             print(index);
             //if(index!=1){index=1;}
                 
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePageState ()));
               //break;
             case 1:
-                Navigator.push(context,MaterialPageRoute(builder: (context) => CurrentTargetState()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const CurrentTargetState ()));
                 
               //break;
             case 2:
               if(index!=2){
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => AddActivityState()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const AddActivityState ()));
                 } else{print('still in the AddActivityPage ');}
               //if(index!=1){index=1;}
               // Probably in this case you have to put an if: if the index is not pointing the home and you are in the case of the home, return to home

@@ -67,15 +67,15 @@ int _selectedIndex = 1;
             
             case 0:
             
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePageState ()));
             case 1:
             if(index!=1){
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => CurrentTargetState()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const CurrentTargetState ()));
               } else{print('still in the AddActivityPage ');}
                   
               //break;
             case 2:
-            Navigator.push(context,MaterialPageRoute(builder: (context) => AddActivityState()));
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const AddActivityState ()));
               //if(index!=1){index=1;}
               // Probably in this case you have to put an if: if the index is not pointing the home and you are in the case of the home, return to home
               break;

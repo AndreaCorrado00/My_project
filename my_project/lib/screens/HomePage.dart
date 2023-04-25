@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/AddActivity.dart';
 import 'package:my_project/screens/CurrentTarget.dart';
+import 'package:my_project/screens/LoginPage.dart';
 import 'package:my_project/screens/ProfileScreen.dart';
 import 'package:my_project/screens/constants.dart';
-import 'package:profile/profile.dart';
 
 
 class HomePageState extends StatefulWidget {
@@ -32,6 +32,15 @@ class HomePage extends State<HomePageState>{
                         fontSize: 25.0,
                         color:secondaryColor,
                       );
+
+    static final _TextButtonStyle_Alert=TextButton.styleFrom(
+                foregroundColor: secondaryColor,
+                shadowColor: secondarylightColor,
+                textStyle: const TextStyle(
+                fontFamily: myfontFamily,
+                fontSize: 15.0,
+                
+              ));
 
   
   static const routename = 'Homepage';
@@ -106,7 +115,7 @@ class HomePage extends State<HomePageState>{
               children: [
                 TextButton(
                 style: _TextButtonStyle_Drawer,
-              onPressed: () { },
+              onPressed: (){_OnLogoutTapConfirm(context);},
               child: const Text('Logout'),),
               Icon(
                   IconData(0xe3b3, fontFamily: 'MaterialIcons'),
@@ -126,7 +135,7 @@ class HomePage extends State<HomePageState>{
           
           children: [
             
-            SizedBox(height: 300,),
+            SizedBox(height: 300),
             Row(
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
@@ -214,17 +223,17 @@ class HomePage extends State<HomePageState>{
             case 0:
             print(index);
                 if(index!=0){
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePageState ()));
                 } else{print('still in the homepage ');}
                 
               //break;
             case 1:
-              Navigator.push(context,MaterialPageRoute(builder: (context) => CurrentTargetState()));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const CurrentTargetState ()));
               
               //break;
             case 2:
               
-              Navigator.push(context,MaterialPageRoute(builder: (context) => AddActivityState()));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const AddActivityState ()));
               // Probably in this case you have to put an if: if the index is not pointing the home and you are in the case of the home, return to home
               break;
               }
@@ -246,4 +255,40 @@ class HomePage extends State<HomePageState>{
     //floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
     );
   } //build
-} //HomePage
+
+
+
+
+void _OnLogoutTapConfirm(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Cancel"),
+    onPressed:  () { Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));},
+    style: _TextButtonStyle_Alert ,
+
+  );
+  Widget continueButton = TextButton(
+    child: Text("Continue"),
+    onPressed:  (){Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const LoginPage ()));},
+    style: _TextButtonStyle_Alert ,
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Logout"),
+    content: Text("Are you sure you want to logout?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+    backgroundColor: primaryLightColor,
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+
+}
+}//HomePage
