@@ -40,6 +40,7 @@ dependencies:
   flutter_login: ^4.1.1
   syncfusion_flutter_charts: ^21.1.38
   profile: ^0.0.1
+  url_launcher: ^6.1.10
   
 
   

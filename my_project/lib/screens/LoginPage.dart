@@ -45,7 +45,9 @@ class LoginPage extends StatelessWidget {
         titleStyle: TextStyle(
           color: primaryLightColor,
           fontFamily: myfontFamily,
-          letterSpacing: 4,),),
+          letterSpacing: 4,),
+        ),
+        
         
     );
   } // build

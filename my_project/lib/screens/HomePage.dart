@@ -134,8 +134,40 @@ class HomePage extends State<HomePageState>{
       body: Column(
           
           children: [
-            
-            SizedBox(height: 300),
+            SizedBox(height: 50),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+              height: 200,
+              width: 300,
+              color: Color.fromARGB(255, 207, 233, 220),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10,),
+                  Text('Your goal-curiosity of the day',
+                  style: TextStyle(color: secondaryColor, fontSize: 20,fontFamily: myfontFamily,fontWeight: FontWeight.bold ),),
+                  SizedBox(height: 15,),
+                  Align(
+                    alignment: Alignment(-0.9,1) ,
+                    child: Text('Do you know?',
+                          style: TextStyle(color: secondaryColor,fontFamily: myfontFamily, fontSize: 15,fontWeight: FontWeight.bold),),),
+                  SizedBox(height: 10,),
+                  Container(
+                    height: 90,
+                    width: 270,
+                    child: Text('Today, more than half the world’s population live in cities. Cities are drivers of economic growth and contribute more than 80 per cent of global GDP.', 
+                                style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,),),// Here there will be the text from the page 
+                  SizedBox(height: 10,),
+                  Align(
+                    
+                    alignment: Alignment(-0.9,5) ,
+                  child: Text('Learn more', style: TextStyle(color: Color.fromARGB(255, 0, 174, 255),fontFamily: myfontFamily, fontSize: 15,fontWeight: FontWeight.bold),),)
+
+                ],
+              ),),
+            ),
+            SizedBox(height: 50),
             Row(
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
