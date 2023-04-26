@@ -8,9 +8,9 @@ import 'package:my_project/screens/ProfilePage.dart';
 import 'package:my_project/screens/StatisticsPage.dart';
 import 'package:my_project/screens/TipsPage.dart';
 import 'package:my_project/screens/constants.dart';
-import 'package:my_project/Database/Advice_Database.dart';
 import 'package:provider/provider.dart';
 import 'package:my_project/Providers/Daily_advice_counter.dart';
+import 'package:intl/intl.dart';
 
 class HomePageState extends StatefulWidget {
   const HomePageState ({super.key});
@@ -19,9 +19,19 @@ class HomePageState extends StatefulWidget {
   State<HomePageState > createState() => HomePage();
 }
 
+// Using DateTime to read the date and handling the daily advice
+  DateTime _now = DateTime.now();
+  String formattedDate = DateFormat.d().format(_now);
+  int today=int.parse(formattedDate);
+
+  
+  
+
 
 
 class HomePage extends State<HomePageState>{
+
+  // Constants of building
   static final _TextButtonStyle_Drawer=TextButton.styleFrom(
                 foregroundColor: secondarylightColor,
                 shadowColor: secondaryColor,
@@ -48,13 +58,17 @@ class HomePage extends State<HomePageState>{
 
   
   static const routename = 'Homepage';
-  static const route = '/Advice_Databse';
+
+  // Index used trought the code
   int _selectedIndex = 0;
+
 
 
 
   @override
   Widget build(BuildContext context) {
+
+
     print('${HomePage.routename} built');
     return Scaffold(
       appBar: AppBar(
@@ -133,7 +147,7 @@ class HomePage extends State<HomePageState>{
           ],
       ),),
       backgroundColor: primaryLightColor,
-
+      
       body: Column(
           
           children: [
@@ -149,7 +163,7 @@ class HomePage extends State<HomePageState>{
                 
                 children: [
                   SizedBox(height: 10,),
-                  Text('Your goal-curiosity of the day',
+                  Text('Curiosity of the day',
                   style: TextStyle(color: secondaryColor, fontSize: 20,fontFamily: myfontFamily,fontWeight: FontWeight.bold ),),
                   SizedBox(height: 15,),
                   Align(
@@ -157,11 +171,13 @@ class HomePage extends State<HomePageState>{
                     child: Text('Do you know?',
                           style: TextStyle(color: secondaryColor,fontFamily: myfontFamily, fontSize: 15,fontWeight: FontWeight.bold),),),
                   SizedBox(height: 10,),
+                  
                   Container(
                     height: 100,
                     width: 300,
-                    child: Consumer<Daily_index>( builder: (context, index , child){
-                      return Text(Provider.of<Daily_index>(context, listen: true).getText(),
+                    
+                    child: Consumer<Daily_index>( builder: (context, index , child){dailyAdviceState();
+                      return Text(Provider.of<Daily_index>(context, listen: false).getText(),
                       style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,);
                      }),
                   ),
@@ -293,10 +309,16 @@ class HomePage extends State<HomePageState>{
           //),
     //floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
     );
+  
   } //build
 
-
-
+void dailyAdviceState() {
+  print('into the function');
+      if (today<=17){Provider.of<Daily_index>(context,listen: false).changeindex(today);}
+    else{
+      Provider.of<Daily_index>(context,listen: false).changeindex(today-17);
+    }
+}
 
 void _OnLogoutTapConfirm(BuildContext context) {
   // set up the buttons

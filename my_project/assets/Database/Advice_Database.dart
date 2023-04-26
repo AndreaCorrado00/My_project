@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
+//void main()
+//{
+//Random random = new Random();
+//int randomNumber = random.nextInt(15); 
+//}
 
-class Daily_index with ChangeNotifier{
-  late int index=1;
-  
- late var adv=elements[index];
+// Creare una classe che riceve come costruttore un numero. Tale numero corrisponde al numero del nostro advice
+class AdviceSelection{
+int? index;
 
-  int get count => index; // Access to the index outside of this dart file
-  String? get shortText =>adv!['adv_text'];
-  String? get Url =>adv!['url'];
-  void addOne (){index++;
-  notifyListeners();
+// --- Constructor
+AdviceSelection({required this.index});
 
-  }
+late var adv=elements[index];
 
 // Metod text: provides the short text of the advice
-dynamic getText(){return adv!['adv_text'];}
+String? getText(){return adv!['adv_text'];}
 // metod get_url: provides the url of the advice
 dynamic getUrl(){return adv!['url'];}
-
-void changeindex(int newindex){
-  index<=newindex;
-  notifyListeners();
 }
 
-
-} 
-
-
+// The real database for our schopes
+// - Remeber to pass to the function that will read the urle the string! Ex: final Uri _url = Uri.parse(adv.getUrl());
 var elements={1: adv1,2: adv2,3: adv3,4: adv4,5: adv5,6: adv6,7: adv7,8: adv8,9:adv9,10:adv10,11:adv11,12:adv12,13:adv13,14:adv14,15:adv15,16:adv16,17:adv17};
 var adv1={
   'adv_text': 'The impact of the COVID-19 pandemic reversed the steady progress of poverty reduction over the past 25 years. ',
@@ -95,6 +90,17 @@ var adv16={
 var adv17={
   'adv_text': 'The 2030 Agenda is universal and calls for action by all countries – developed and developing – to ensure no one is left behind.',
   'url':'https://www.un.org/sustainabledevelopment/globalpartnerships/'};
+
+
+// My idea of how can we use these link
+// A widget (algrthm) with the 'Goal-curiosity of the day'
+// Proving a way to read the current date and to convert the current date into a number between 1 and 17
+// The widget (HomePage) could show a certain costant text and a mutable text wich is inside this databese. Than there is a link to the page
+
+
+  
+
+
 
 
 
