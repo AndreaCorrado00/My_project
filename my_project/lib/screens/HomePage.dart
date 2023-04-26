@@ -8,7 +8,9 @@ import 'package:my_project/screens/ProfilePage.dart';
 import 'package:my_project/screens/StatisticsPage.dart';
 import 'package:my_project/screens/TipsPage.dart';
 import 'package:my_project/screens/constants.dart';
-import 'package:my_project/assets/Database/Advice_Database.dart';
+import 'package:my_project/Database/Advice_Database.dart';
+import 'package:provider/provider.dart';
+import 'package:my_project/Providers/Daily_advice_counter.dart';
 
 class HomePageState extends StatefulWidget {
   const HomePageState ({super.key});
@@ -46,7 +48,7 @@ class HomePage extends State<HomePageState>{
 
   
   static const routename = 'Homepage';
-  
+  static const route = '/Advice_Databse';
   int _selectedIndex = 0;
 
 
@@ -135,15 +137,16 @@ class HomePage extends State<HomePageState>{
       body: Column(
           
           children: [
-            SizedBox(height: 50),
+            SizedBox(height: 15),
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Container(
-              height: 200,
-              width: 300,
+              height: 250,
+              width: 350,
               color: thirdColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                
                 children: [
                   SizedBox(height: 10,),
                   Text('Your goal-curiosity of the day',
@@ -155,10 +158,13 @@ class HomePage extends State<HomePageState>{
                           style: TextStyle(color: secondaryColor,fontFamily: myfontFamily, fontSize: 15,fontWeight: FontWeight.bold),),),
                   SizedBox(height: 10,),
                   Container(
-                    height: 90,
-                    width: 270,
-                    child: Text('Today, more than half the world’s population live in cities. Cities are drivers of economic growth and contribute more than 80 per cent of global GDP.', 
-                                style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,),),// Here there will be the text from the page 
+                    height: 100,
+                    width: 300,
+                    child: Consumer<Daily_index>( builder: (context, index , child){
+                      return Text(Provider.of<Daily_index>(context, listen: true).getText(),
+                      style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,);
+                     }),
+                  ),
                   SizedBox(height: 10,),
                   Align(
                     

@@ -1,11 +1,5 @@
-import 'package:url_launcher/url_launcher.dart';
-//void main()
-//{
-//Random random = new Random();
-//int randomNumber = random.nextInt(15); 
-//}
+import 'package:flutter/material.dart';
 
-// Creare una classe che riceve come costruttore un numero. Tale numero corrisponde al numero del nostro advice
 class AdviceSelection{
 int? index;
 
@@ -60,7 +54,7 @@ var adv9={
   'url':'https://www.un.org/sustainabledevelopment/infrastructure-industrialization/'};
 
 var adv10={
-  'adv_text': ' Emerging markets and developing economies are experiencing slow recoveries, widening disparities in income between countries. The number of refugees and migrant deaths worldwide reached the highest absolute number on record in 2021.',
+  'adv_text': ' Emerging markets and developing economies are experiencing slow recoveries, widening disparities in income between countries.',
   'url':'https://www.un.org/sustainabledevelopment/inequality/'};
 
 var adv11={
@@ -72,7 +66,7 @@ var adv12={
   'url':'https://www.un.org/sustainabledevelopment/sustainable-consumption-production/'};
 
 var adv13={
-  'adv_text': 'To limit warming to 1.5° Celsius above pre-industrial levels, as set out in the Paris Agreement, global greenhouse gas emissions will need to peak before 2025. Then they must decline by 43 per cent by 2030 and to net zero by 2050. ',
+  'adv_text': 'To limit warming to 1.5° Celsius above pre-industrial levels, global greenhouse gas emissions will need to peak before 2025. Then they must decline by 43 per cent by 2030. ',
   'url':'https://www.un.org/sustainabledevelopment/climate-change/'};
 
 var adv14={
