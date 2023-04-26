@@ -9,8 +9,9 @@ import 'package:my_project/screens/StatisticsPage.dart';
 import 'package:my_project/screens/TipsPage.dart';
 import 'package:my_project/screens/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:my_project/Providers/Daily_advice_counter.dart';
+//import 'package:my_project/Providers/Daily_advice_counter.dart';
 import 'package:intl/intl.dart';
+import 'package:my_project/Database/Advice_Database.dart';
 
 class HomePageState extends StatefulWidget {
   const HomePageState ({super.key});
@@ -23,9 +24,6 @@ class HomePageState extends StatefulWidget {
   DateTime _now = DateTime.now();
   String formattedDate = DateFormat.d().format(_now);
   int today=int.parse(formattedDate);
-
-  
-  
 
 
 
@@ -61,13 +59,14 @@ class HomePage extends State<HomePageState>{
 
   // Index used trought the code
   int _selectedIndex = 0;
+  int today_index=today%17;
 
 
 
 
   @override
   Widget build(BuildContext context) {
-
+    print(today_index);
 
     print('${HomePage.routename} built');
     return Scaffold(
@@ -176,10 +175,12 @@ class HomePage extends State<HomePageState>{
                     height: 100,
                     width: 300,
                     
-                    child: Consumer<Daily_index>( builder: (context, index , child){//dailyAdviceState();
-                      return Text(Provider.of<Daily_index>(context, listen: false).getText(),
-                      style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,);
-                     }),
+                    child: Text(Advices[today_index]['adv_text'],
+                      style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,)
+                    //Consumer<Daily_index>( builder: (context, index , child){//dailyAdviceState();
+                      //return Text(Provider.of<Daily_index>(context, listen: false).getText(),
+                      //style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,);
+                     //}),
                   ),
                   SizedBox(height: 10,),
                   Align(
@@ -312,13 +313,13 @@ class HomePage extends State<HomePageState>{
   
   } //build
 
-void dailyAdviceState() {
-  print('into the function');
-      if (today<=17){Provider.of<Daily_index>(context,listen: false).changeindex(today);}
-    else{
-      Provider.of<Daily_index>(context,listen: false).changeindex(today-17);
-    }
-}
+//void dailyAdviceState() {
+  //print('into the function');
+      //if (today<=17){Provider.of<Daily_index>(context,listen: false).changeindex(today);}
+    //else{
+      //Provider.of<Daily_index>(context,listen: false).changeindex(today-17);
+    //}
+//}
 
 void _OnLogoutTapConfirm(BuildContext context) {
   // set up the buttons
