@@ -1,26 +1,30 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:my_project/screens/HomePage.dart';
 import 'package:my_project/screens/constants.dart';
 
-class ProfileScreen extends StatefulWidget {
- const ProfileScreen ({super.key});
+class ProfilePage extends StatefulWidget {
+ const ProfilePage ({super.key});
 
   @override
-  ProfileScreenState createState() => ProfileScreenState();
+  ProfilePageState createState() => ProfilePageState();
 }
 
-class ProfileScreenState extends State<ProfileScreen> {
+class ProfilePageState extends State<ProfilePage> {
 static const routename = 'ProfileScreen';
   @override
   Widget build(BuildContext context) {
-    print('${ProfileScreenState.routename} built');
+    print('${ProfilePageState.routename} built');
     return MaterialApp(
       title: 'Profile ',
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
           title: Text('Profile'),
+          actions: [
+            IconButton(onPressed: (){}, icon: Icon(Icons.settings) )
+          ],
           //automaticallyImplyLeading: true,
           
         ),
@@ -227,8 +231,8 @@ static const routename = 'ProfileScreen';
           ],
         ),
           floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.settings),
-          onPressed: () {},
+          child: const Icon(Icons.home),
+          onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));},
           backgroundColor: secondaryColor,
           elevation: 0.0,
           splashColor: primaryLightColor,

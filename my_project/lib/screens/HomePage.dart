@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:my_project/screens/AddActivity.dart';
 import 'package:my_project/screens/CurrentTarget.dart';
 import 'package:my_project/screens/LoginPage.dart';
-import 'package:my_project/screens/ProfileScreen.dart';
+import 'package:my_project/screens/ProfilePage.dart';
+import 'package:my_project/screens/StatisticsPage.dart';
+import 'package:my_project/screens/TipsPage.dart';
 import 'package:my_project/screens/constants.dart';
 
 
@@ -22,7 +24,7 @@ class HomePage extends State<HomePageState>{
                 foregroundColor: secondarylightColor,
                 shadowColor: secondaryColor,
                 fixedSize: const Size(250, 50),
-                alignment: const Alignment(-0.8, 0),
+                alignment: const Alignment(-0.95, 0),
                 textStyle: const TextStyle(
                 fontFamily: myfontFamily,
                 fontSize: 20.0,
@@ -67,13 +69,14 @@ class HomePage extends State<HomePageState>{
               children: [
                 TextButton(
                 style: _TextButtonStyle_Drawer,
-              onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context) => ProfileScreen()));},
-              child: const Text('Profile'),),
+                onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context) => ProfilePage()));},
+                
+              child: const Text('Profile'),
+              ),
               Icon(
                   IconData(0xe491, fontFamily: 'MaterialIcons'),
                   color: secondarylightColor,
                   size: 24.0,
-                  semanticLabel: 'Text to announce in accessibility modes',
                   ),
               ],
             
@@ -83,13 +86,12 @@ class HomePage extends State<HomePageState>{
               children: [
                 TextButton(
                 style: _TextButtonStyle_Drawer,
-              onPressed: () { },
+              onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => StatisticsPage()));},
               child: const Text('Statistics'),),
               Icon(
                   IconData(0xebef, fontFamily: 'MaterialIcons'),
                   color: secondarylightColor,
                   size: 24.0,
-                  semanticLabel: 'Text to announce in accessibility modes',
                   ),
               ],
             
@@ -99,13 +101,12 @@ class HomePage extends State<HomePageState>{
               children: [
                 TextButton(
                 style: _TextButtonStyle_Drawer,
-              onPressed: () { },
+              onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => TipsPage()));},
               child: const Text('Advice and Tips'),),
               Icon(
                   Icons.tips_and_updates,
                   color: secondarylightColor,
                   size: 24.0,
-                  semanticLabel: 'Text to announce in accessibility modes',
                   ),
               ],
             
@@ -140,9 +141,9 @@ class HomePage extends State<HomePageState>{
               child: Container(
               height: 200,
               width: 300,
-              color: Color.fromARGB(255, 207, 233, 220),
+              color: thirdColor,
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: 10,),
                   Text('Your goal-curiosity of the day',
