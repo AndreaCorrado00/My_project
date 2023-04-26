@@ -8,7 +8,7 @@ import 'package:my_project/screens/ProfilePage.dart';
 import 'package:my_project/screens/StatisticsPage.dart';
 import 'package:my_project/screens/TipsPage.dart';
 import 'package:my_project/screens/constants.dart';
-
+import 'package:my_project/assets/Database/Advice_Database.dart';
 
 class HomePageState extends StatefulWidget {
   const HomePageState ({super.key});
