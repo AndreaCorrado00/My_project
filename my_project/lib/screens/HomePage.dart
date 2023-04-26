@@ -176,7 +176,7 @@ class HomePage extends State<HomePageState>{
                     height: 100,
                     width: 300,
                     
-                    child: Consumer<Daily_index>( builder: (context, index , child){dailyAdviceState();
+                    child: Consumer<Daily_index>( builder: (context, index , child){//dailyAdviceState();
                       return Text(Provider.of<Daily_index>(context, listen: false).getText(),
                       style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,);
                      }),
