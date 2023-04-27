@@ -11,8 +11,9 @@ import 'package:my_project/screens/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:my_project/Database/Advice_Database.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:animated_digit/animated_digit.dart';
 
-// Index used trought the code
+//-------------- Index used trought the code
 int _selectedIndex = 0;
 
 // Using DateTime to read the date and handling the daily advice
@@ -23,7 +24,7 @@ int _selectedIndex = 0;
   final Uri _url = Uri.parse(Advices[today_index]['url']);
 
 
-
+//-------------- UI of the page
 class HomePageState extends StatefulWidget {
   const HomePageState ({super.key});
 
@@ -189,10 +190,6 @@ class HomePage extends State<HomePageState>{
                     
                     child: Text(Advices[today_index]['adv_text'],
                       style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,)
-                    //Consumer<Daily_index>( builder: (context, index , child){//dailyAdviceState();
-                      //return Text(Provider.of<Daily_index>(context, listen: false).getText(),
-                      //style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,);
-                     //}),
                   ),
                   SizedBox(height: 10,),
                   Align(
@@ -222,7 +219,13 @@ class HomePage extends State<HomePageState>{
                         IconData(0xe07e, fontFamily: 'MaterialIcons'),
                         color: secondaryColor,
                         size: 30.0,
-                  ),],),),
+                  ),
+
+                  AnimatedDigitWidget(
+                    value: 300,
+                    textStyle: _TextButtonStyle_HomePage,
+                  )
+                  ],),),
                 SizedBox(
                   height: 200,width: 200,
                   child:
@@ -234,7 +237,12 @@ class HomePage extends State<HomePageState>{
                         IconData(0xf0603, fontFamily: 'MaterialIcons'),
                         color: secondaryColor,
                         size: 30.0,
-                      ),],),
+                      ),
+                    AnimatedDigitWidget(
+                    value: 20,
+                    textStyle: _TextButtonStyle_HomePage,
+                  )
+                      ,],),
                   ),],),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -249,7 +257,13 @@ class HomePage extends State<HomePageState>{
                         IconData(0xf6bd, fontFamily: 'MaterialIcons'),
                         color: secondaryColor,
                         size: 30.0,
-                  ),],),),
+                  ),
+                  AnimatedDigitWidget(
+                    value: 10000,
+                    textStyle: _TextButtonStyle_HomePage,
+                    separateSymbol: '.',
+                  )
+                  ],),),
                   SizedBox(
                   height: 200,width: 200,
                   child:Column( 
@@ -260,7 +274,12 @@ class HomePage extends State<HomePageState>{
                         IconData(0xea8e, fontFamily: 'MaterialIcons'),
                         color: secondaryColor,
                         size: 30.0,
-                  ),],),),
+                  ),
+                  AnimatedDigitWidget(
+                    value: 70,
+                    textStyle: _TextButtonStyle_HomePage,
+                  )
+                  ],),),
                  ],
                 ),
       ],),
@@ -329,6 +348,8 @@ class HomePage extends State<HomePageState>{
   
   
   } //build
+
+//-------------- Functions used trought the code 
 
 Future<void> _launchUrl() async {if (!await launchUrl(_url)) {
     throw Exception('Could not launch $_url');}}
