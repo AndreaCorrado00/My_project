@@ -43,7 +43,7 @@ dependencies:
   url_launcher: ^6.1.10
   provider: ^6.0.5
   intl: ^0.18.1
-
+  animated_digit: ^3.2.1
   
 
   
