@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
 
-//class AdviceSelection{
-//final int index;
-
-// --- Constructor
-//AdviceSelection({required this.index ,});
-
-//late Map<String, String>? adv=elements[index];
-
-// Metod text: provides the short text of the advice
-//dynamic getText(){return adv!['adv_text'];}
-// metod get_url: provides the url of the advice
-//dynamic getUrl(){return adv!['url'];}
-
-//}
-// The real database for our schopes
-// - Remeber to pass to the function that will read the urle the string! Ex: final Uri _url = Uri.parse(adv.getUrl());
 Map<int, dynamic> Advices={1: adv1,2: adv2,3: adv3,4: adv4,5: adv5,6: adv6,7: adv7,8: adv8,9:adv9,10:adv10,11:adv11,12:adv12,13:adv13,14:adv14,15:adv15,16:adv16,17:adv17};
 Map<String, String> adv1={
   'adv_text': 'The impact of the COVID-19 pandemic reversed the steady progress of poverty reduction over the past 25 years. ',
@@ -54,7 +38,7 @@ Map<String, String> adv9={
   'url':'https://www.un.org/sustainabledevelopment/infrastructure-industrialization/'};
 
 Map<String, String> adv10={
-  'adv_text': ' Emerging markets and developing economies are experiencing slow recoveries, widening disparities in income between countries.',
+  'adv_text': 'Emerging markets and developing economies are experiencing slow recoveries, widening disparities in income between countries.',
   'url':'https://www.un.org/sustainabledevelopment/inequality/'};
 
 Map<String, String> adv11={
