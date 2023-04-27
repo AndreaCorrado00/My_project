@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> dev
 import 'package:provider/provider.dart';
+=======
+>>>>>>> dev
 import 'package:my_project/screens/LoginPage.dart';
 void main() {
   runApp(
