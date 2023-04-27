@@ -13,8 +13,7 @@ import 'package:my_project/Database/Advice_Database.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_digit/animated_digit.dart';
 
-//-------------- Index used trought the code
-int _selectedIndex = 0;
+
 
 // Using DateTime to read the date and handling the daily advice
   DateTime _now = DateTime.now();
@@ -67,7 +66,8 @@ class HomePage extends State<HomePageState>{
   static const routename = 'Homepage';
 
 
-  
+//-------------- Index used trought the code to build widgets
+int _selectedIndex = 0;
 
   
  
