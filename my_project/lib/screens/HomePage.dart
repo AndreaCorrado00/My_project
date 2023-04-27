@@ -8,10 +8,21 @@ import 'package:my_project/screens/ProfilePage.dart';
 import 'package:my_project/screens/StatisticsPage.dart';
 import 'package:my_project/screens/TipsPage.dart';
 import 'package:my_project/screens/constants.dart';
-import 'package:provider/provider.dart';
-//import 'package:my_project/Providers/Daily_advice_counter.dart';
 import 'package:intl/intl.dart';
 import 'package:my_project/Database/Advice_Database.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// Index used trought the code
+int _selectedIndex = 0;
+
+// Using DateTime to read the date and handling the daily advice
+  DateTime _now = DateTime.now();
+  String formattedDate = DateFormat.d().format(_now);
+  int today=int.parse(formattedDate);
+  int today_index=today%17;
+  final Uri _url = Uri.parse(Advices[today_index]['url']);
+
+
 
 class HomePageState extends StatefulWidget {
   const HomePageState ({super.key});
@@ -20,10 +31,7 @@ class HomePageState extends StatefulWidget {
   State<HomePageState > createState() => HomePage();
 }
 
-// Using DateTime to read the date and handling the daily advice
-  DateTime _now = DateTime.now();
-  String formattedDate = DateFormat.d().format(_now);
-  int today=int.parse(formattedDate);
+
 
 
 
@@ -57,16 +65,20 @@ class HomePage extends State<HomePageState>{
   
   static const routename = 'Homepage';
 
-  // Index used trought the code
-  int _selectedIndex = 0;
-  int today_index=today%17;
 
+  
+
+  
+ 
 
 
 
   @override
   Widget build(BuildContext context) {
-    print(today_index);
+  
+  // Daily advice handler 
+  
+
 
     print('${HomePage.routename} built');
     return Scaffold(
@@ -186,7 +198,10 @@ class HomePage extends State<HomePageState>{
                   Align(
                     
                     alignment: Alignment(-0.9,5) ,
-                  child: Text('Learn more', style: TextStyle(color: Color.fromARGB(255, 0, 174, 255),fontFamily: myfontFamily, fontSize: 15,fontWeight: FontWeight.bold),),)
+                  child: TextButton(
+                    onPressed: (){_launchUrl(); },
+                    child: Text('Learn more', style: 
+                                TextStyle(color: Color.fromARGB(255, 0, 174, 255),fontFamily: myfontFamily, fontSize: 15,fontWeight: FontWeight.bold),),),)
 
                 ],
               ),),
@@ -311,15 +326,13 @@ class HomePage extends State<HomePageState>{
     //floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
     );
   
+  
+  
   } //build
 
-//void dailyAdviceState() {
-  //print('into the function');
-      //if (today<=17){Provider.of<Daily_index>(context,listen: false).changeindex(today);}
-    //else{
-      //Provider.of<Daily_index>(context,listen: false).changeindex(today-17);
-    //}
-//}
+Future<void> _launchUrl() async {if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');}}
+
 
 void _OnLogoutTapConfirm(BuildContext context) {
   // set up the buttons
