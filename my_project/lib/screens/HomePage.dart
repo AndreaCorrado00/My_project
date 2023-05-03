@@ -13,8 +13,10 @@ import 'package:my_project/Database/Advice_Database.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 
+// ------------- Everything must be readed before creating the homepage
 
 // Using DateTime to read the date and handling the daily advice
   DateTime _now = DateTime.now();
@@ -22,6 +24,13 @@ import 'package:shared_preferences/shared_preferences.dart';
   int today=int.parse(formattedDate);
   int today_index=today%17;
   final Uri _url = Uri.parse(Advices[today_index]['url']);
+
+// Computing of the level of susteinabilty
+// My idea: probably the level could be computed by using a shered preferences dictionaty. Ence, everytime you upload a new activity (even if not automatically)
+// an istance of the shared preferences "database" (because is not a real one) is udated. Than, the function could read all the elements and use them to evaluate 
+// the value of LoS. Then the current value is udated and can be passed to the widget below
+
+int _levelOfSusteinability(){return 324;}
 
 
 //-------------- UI of the page
@@ -161,15 +170,17 @@ int _selectedIndex = 0;
       ),),
       backgroundColor: primaryLightColor,
       
-      body: Column(
-          
+      body: Align(
+        alignment: Alignment.topCenter,
+        child:Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 15),
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Container(
-              height: 250,
-              width: 350,
+              height: 280,
+              width: 330,
               color: thirdColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -186,8 +197,8 @@ int _selectedIndex = 0;
                   SizedBox(height: 10,),
                   
                   Container(
-                    height: 110,
-                    width: 300,
+                    height: 120,
+                    width: 270,
                     
                     child: Text(Advices[today_index]['adv_text'],
                       style: TextStyle(fontSize:15 ), textAlign: TextAlign.justify,)
@@ -204,86 +215,74 @@ int _selectedIndex = 0;
                 ],
               ),),
             ),
-            SizedBox(height: 50),
-            Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-               children: [
-                SizedBox(
-                  height: 200,width: 200,
-                  child: 
-                  Column(
-                    children: [
-                      Text('LoS',
-                      style: _TextButtonStyle_HomePage,
-                      ),
-                      Icon(
-                        IconData(0xe07e, fontFamily: 'MaterialIcons'),
-                        color: secondaryColor,
-                        size: 30.0,
-                  ),
+            SizedBox(height: 30),
 
-                  AnimatedDigitWidget(
-                    value: 300,
-                    textStyle: _TextButtonStyle_HomePage,
-                  )
-                  ],),),
-                SizedBox(
-                  height: 200,width: 200,
-                  child:
-                  Column( 
-                    children: [
-                      Text('Trees planted',
-                      style: _TextButtonStyle_HomePage,),
-                      Icon(
-                        IconData(0xf0603, fontFamily: 'MaterialIcons'),
-                        color: secondaryColor,
-                        size: 30.0,
-                      ),
-                    AnimatedDigitWidget(
-                    value: 20,
-                    textStyle: _TextButtonStyle_HomePage,
-                  )
-                      ,],),
-                  ),],),
-            Row(
+            ClipRRect(
+              
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                height: 200,
+                width: 330,
+                color: thirdColor,
+                
+                child: Column(
+                  
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children:[
+                  SizedBox(height: 10),
+                  Text('Level of Susteinability',style: _TextButtonStyle_HomePage,),
+                  SizedBox(height: 50),
+                  AnimatedDigitWidget(value: _levelOfSusteinability(),textStyle: _TextButtonStyle_HomePage,),
+                  Icon(IconData(0xe07e, fontFamily: 'MaterialIcons'),color: secondaryColor,size: 30.0,)]
+                )
+            ),),
+            SizedBox(height: 30),
+
+            Align(alignment: Alignment.centerRight,
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-               children: [
-                SizedBox(
-                  height: 200,width: 200,
-                  child:Column( 
-                    children: [
-                      Text('Total steps',
-                      style:_TextButtonStyle_HomePage,),
-                      Icon(
-                        IconData(0xf6bd, fontFamily: 'MaterialIcons'),
-                        color: secondaryColor,
-                        size: 30.0,
-                  ),
-                  AnimatedDigitWidget(
-                    value: 10000,
-                    textStyle: _TextButtonStyle_HomePage,
-                    separateSymbol: '.',
-                  )
-                  ],),),
-                  SizedBox(
-                  height: 200,width: 200,
-                  child:Column( 
-                    children: [
-                      Text('Unused petrol',
-                      style: _TextButtonStyle_HomePage,),
-                      Icon(
-                        IconData(0xea8e, fontFamily: 'MaterialIcons'),
-                        color: secondaryColor,
-                        size: 30.0,
-                  ),
-                  AnimatedDigitWidget(
-                    value: 70,
-                    textStyle: _TextButtonStyle_HomePage,
-                  )
-                  ],),),
-                 ],
-                ),
-      ],),
+              children: [
+              ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                height: 150,
+                width: 150,
+                color: thirdColor,
+                
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:[
+                  
+                  Text('Trees',style: _TextButtonStyle_HomePage,),
+                  SizedBox(height: 20),
+                  AnimatedDigitWidget(value: 1254 ,textStyle: _TextButtonStyle_HomePage,),
+                  Icon(IconData(0xf0603, fontFamily: 'MaterialIcons'),color: secondaryColor,size: 30.0,)]
+                )
+            ),),
+            SizedBox(width: 30),
+
+            ClipRRect(
+              
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                height: 150,
+                width: 150, 
+                color: thirdColor,
+                
+                child:Column(
+                  
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:[
+                  
+                  Text('Total steps',style: _TextButtonStyle_HomePage,),
+                  SizedBox(height: 20),
+                  AnimatedDigitWidget(value: 125436,textStyle: _TextButtonStyle_HomePage,),
+                  Icon(IconData(0xf6bd, fontFamily: 'MaterialIcons'),color: secondaryColor,size: 30.0,)]
+                )
+            ),)],)),
+      ]
+      
+      ,),),
     
 
     bottomNavigationBar: BottomNavigationBar(
