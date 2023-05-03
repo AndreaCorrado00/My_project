@@ -1,5 +1,6 @@
 IDEA: creare un'applicazione che funga da bacino di raccolta per due principali elementi: le nostre abitutdini e lo stato dell'arte in fatto di sostenibilità. Assieme a questo, l'applicazione potrebbe proporre dei modi per migliorare le proprie abitudini in fatto di sistenibilità attraverso dei consigli e attraverso un'interfaccia molto simile a quella che potrebbe avere un'app per lo sport, con l'idea che il proprio miglioramento in fatto di sostenibilità possa passare anche attraverso l'allenamento.
 Con questi scopi in mente ho provato a metter giù qualche idea riguardo la struttura dell'app.
+Da un lato ci sarà una parte dell'app dedicata alle informaizoni/consigli riguardo la sostenibilità, dall'altro la possibilità di caricare attività sostenibili legate alle informazioni che si acquisiscono. Le attività caricate potrebbero premiare in termini di alberi piantati (ad esempio) in modo da sviluppare un circolo virtuoso fatto da: acquisisco info -> metto in pratica -> ottengo risultati legati all'ambiente favorendo la sostenibilità.
 
 Caratteristiche dell'app: 
 1. Abbia un Login flow
