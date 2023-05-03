@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:my_project/Database/Advice_Database.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_digit/animated_digit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -185,7 +186,7 @@ int _selectedIndex = 0;
                   SizedBox(height: 10,),
                   
                   Container(
-                    height: 100,
+                    height: 110,
                     width: 300,
                     
                     child: Text(Advices[today_index]['adv_text'],
@@ -349,23 +350,26 @@ int _selectedIndex = 0;
   
   } //build
 
+
 //-------------- Functions used trought the code 
 
 Future<void> _launchUrl() async {if (!await launchUrl(_url)) {
     throw Exception('Could not launch $_url');}}
 
 
+
 void _OnLogoutTapConfirm(BuildContext context) {
+  
   // set up the buttons
   Widget cancelButton = TextButton(
     child: Text("Cancel"),
-    onPressed:  () { Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));},
+    onPressed:  () {Navigator.push(context,MaterialPageRoute(builder: (context) => HomePageState()));},
     style: _TextButtonStyle_Alert ,
 
   );
   Widget continueButton = TextButton(
     child: Text("Continue"),
-    onPressed:  (){Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const LoginPage ()));},
+    onPressed:  (){_Logout(context);},
     style: _TextButtonStyle_Alert ,
   );
   // set up the AlertDialog
@@ -385,6 +389,18 @@ void _OnLogoutTapConfirm(BuildContext context) {
       return alert;
     },
   );
-
 }
+
+void _Logout(dynamic context) async{
+    final user_preferences=await SharedPreferences.getInstance();
+    // ignore: await_only_futures
+    await user_preferences.remove('Rememeber_login');
+    print('Into _Logout');
+    print(await user_preferences.getBool('Rememeber_login'));
+    Navigator.pop(context);
+    
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const LoginPage ()));
+
+  }
+
 }//HomePage

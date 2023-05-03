@@ -4,16 +4,43 @@ import 'package:flutter_login/flutter_login.dart';
 import 'constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   static const routename = 'LoginPage';
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    super.initState();
+    //Check if the user is already logged in before rendering the login page
+    _checkLogin();
+  }//initState
+
+   void _checkLogin() async {
+    final user_preferences=await SharedPreferences.getInstance();
+    if(await user_preferences.getBool('Rememeber_login')==true){
+      print('Into_checkLogin');
+      print(await user_preferences.getBool('Rememeber_login'));
+      _toHomePage(context);
+    }//if
+  }//_checkLogin
+
+  static const routename = '_LoginPageState';
+
   Future<String> _loginUser(LoginData data) async {
-    final dataDB=await SharedPreferences.getInstance();
-    if(dataDB.getString('name')  == 'andrea@gmail.com' && dataDB.getString('password') == '0000'){
+    
+    if(data.name  == 'andrea@gmail.com' && data.password == '0000'){
+      final user_preferences=await SharedPreferences.getInstance();
+      await user_preferences.setBool('Rememeber_login', true);
+      print('Into _loginUser');
+      print(await user_preferences.getBool('Rememeber_login'));
       return '';
     } else {
       return 'Wrong credentials';
@@ -22,11 +49,11 @@ class LoginPage extends StatelessWidget {
 
   Future<String> _signUpUser(SignupData data) async {
     // Problems: i have to control the flow of the database. At the moment, the login doesn't uses the saved name, moreover, an other used different from andre@gmai.com will provide a logic erro
-     final dataDB=await SharedPreferences.getInstance();
-     await dataDB.setString('name', data.name!);
-     await dataDB.setString('password', data.password!);
-     SignupData.fromSignupForm(name: dataDB.getString('name'), password: dataDB.getString('password'));
-     return '';
+     //final dataDB=await SharedPreferences.getInstance();
+     //await dataDB.setString('name', data.name!);
+     //await dataDB.setString('password', data.password!);
+     //SignupData.fromSignupForm(name: dataDB.getString('name'), password: dataDB.getString('password'));
+     return 'To be implemented';
   } // _signUpUser
 
   Future<String> _recoverPassword(String email) async {
@@ -42,7 +69,7 @@ class LoginPage extends StatelessWidget {
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,
-      onSubmitAnimationCompleted: () async{Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePageState ()));},
+      onSubmitAnimationCompleted: () async{_toHomePage(context);},
       theme: LoginTheme(
         pageColorLight: primaryColor,
         primaryColor: secondaryColor,
@@ -59,4 +86,7 @@ class LoginPage extends StatelessWidget {
         
     );
   } // build
+  void _toHomePage(BuildContext context){
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePageState ()));
+  }//_toHomePage
 } // LoginScreen
