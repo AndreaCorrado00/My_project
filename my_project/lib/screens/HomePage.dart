@@ -258,21 +258,24 @@ class HomePage extends State<HomePageState> {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Container(
-                  height: 200,
+                  height: 340,
                   width: 330,
                   color: thirdColor,
-                  child: Column(
+                  child: Align(
 
-                      //mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 10),
-                        Text(
-                          'Level of Susteinability',
-                          style: _TextButtonStyle_HomePage,
-                        ),
-                        SizedBox(height: 10),
+                      alignment: Alignment.topCenter,
+                      child: 
+                        //SizedBox(height: 10),
+                        //Text(
+                          //'Level of Susteinability',
+                          //style: _TextButtonStyle_HomePage,
+                        //),
+                        //SizedBox(height: 10),
                         SfRadialGauge(
-                          axes: <RadialAxis>[RadialAxis(minimum: 0,maximum: 400,
+                          title: GaugeTitle(text: 'Level of Susteinability',textStyle: _TextButtonStyle_HomePage),
+                          axes: <RadialAxis>[RadialAxis(minimum: 0,maximum: 400,startAngle: 180,endAngle: 0,interval: 50,
+                          canScaleToFit: true,
+                          axisLineStyle: AxisLineStyle(thickness: 40),
                           ranges: <GaugeRange>[
                                       GaugeRange(startValue: 0, endValue: 50, color:Colors.red),
                                       GaugeRange(startValue: 50,endValue: 100,color:  Colors.redAccent),
@@ -290,13 +293,13 @@ class HomePage extends State<HomePageState> {
                           ]
                         ),
 
-                        AnimatedDigitWidget(value: 324,textStyle: _TextButtonStyle_HomePage,),
-                        Icon(
-                          IconData(0xe07e, fontFamily: 'MaterialIcons'),
-                          color: secondaryColor,
-                          size: 30.0,
-                        )
-                      ])),
+                        //AnimatedDigitWidget(value: 324,textStyle: _TextButtonStyle_HomePage,),
+                        //Icon(
+                          //IconData(0xe07e, fontFamily: 'MaterialIcons'),
+                          //color: secondaryColor,
+                          //size: 30.0,
+                        //)
+                      )),
             ),
             SizedBox(height: 30),
             Align(
