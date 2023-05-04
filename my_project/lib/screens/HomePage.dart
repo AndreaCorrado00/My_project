@@ -13,7 +13,8 @@ import 'package:my_project/Database/Advice_Database.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+//import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 // ------------- Everything must be readed before creating the homepage
 
@@ -29,20 +30,8 @@ final Uri _url = Uri.parse(Advices[today_index]['url']);
 // an istance of the shared preferences "database" (because is not a real one) is udated. Than, the function could read all the elements and use them to evaluate
 // the value of LoS. Then the current value is udated and can be passed to the widget below
 
-int _levelOfSusteinabilityCalculator() {
+double _levelOfSusteinability() {
   return 324;
-}
-
-final List<num?> _levelOfSusteinability = [324];
-
-final List<LoSData> _losData = [
-  LoSData('LoS_Value', _levelOfSusteinabilityCalculator()),
-];
-
-class LoSData {
-  LoSData(this.x, this.y);
-  final String x;
-  final int y;
 }
 
 //-------------- UI of the page
@@ -281,17 +270,26 @@ class HomePage extends State<HomePageState> {
                           'Level of Susteinability',
                           style: _TextButtonStyle_HomePage,
                         ),
-                        SizedBox(height: 50),
-                        //SfCircularChart(
-                            //margin: EdgeInsets.all(100),
-                            //series: <CircularSeries>[
-                              //RadialBarSeries<LoSData, String>(
-                                  //dataSource: _losData,
-                                  //xValueMapper: (LoSData data, _) => data.x,
-                                  //yValueMapper: (LoSData data, _) => data.y,
-                                  //maximumValue: 400,
-                                  //cornerStyle: CornerStyle.bothCurve)
-                            //]),
+                        SizedBox(height: 10),
+                        SfRadialGauge(
+                          axes: <RadialAxis>[RadialAxis(minimum: 0,maximum: 400,
+                          ranges: <GaugeRange>[
+                                      GaugeRange(startValue: 0, endValue: 50, color:Colors.red),
+                                      GaugeRange(startValue: 50,endValue: 100,color:  Colors.redAccent),
+                                      GaugeRange(startValue: 100,endValue: 150,color: Colors.deepOrange),
+                                      GaugeRange(startValue: 150, endValue: 200, color:Colors.orange ),
+                                      GaugeRange(startValue: 200,endValue: 250,color: Colors.yellow),
+                                      GaugeRange(startValue: 250,endValue: 300,color:  Colors.yellowAccent),
+                                      GaugeRange(startValue: 300,endValue: 350,color:Colors.lightGreen),
+                                      GaugeRange(startValue: 350,endValue: 400,color: Colors.green)],
+                                  pointers: <GaugePointer>[NeedlePointer(value: _levelOfSusteinability())],
+                                  annotations: <GaugeAnnotation>[GaugeAnnotation(widget: Container(child: 
+                                                        Text(_levelOfSusteinability().toString(),style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))),
+                                                        angle: 90, positionFactor: 0.5)]
+                          ),
+                          ]
+                        ),
+
                         AnimatedDigitWidget(value: 324,textStyle: _TextButtonStyle_HomePage,),
                         Icon(
                           IconData(0xe07e, fontFamily: 'MaterialIcons'),
