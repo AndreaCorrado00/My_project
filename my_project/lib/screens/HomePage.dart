@@ -224,7 +224,7 @@ class HomePage extends State<HomePageState> {
                       height: 10,
                     ),
                     Container(
-                        height: 120,
+                        height: 125,
                         width: 270,
                         child: Text(
                           Advices[today_index]['adv_text'],
@@ -258,40 +258,45 @@ class HomePage extends State<HomePageState> {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Container(
-                  height: 340,
+                  height: 200,
                   width: 330,
                   color: thirdColor,
-                  child: Align(
+                  child: Column(
 
-                      alignment: Alignment.topCenter,
-                      child: 
-                        //SizedBox(height: 10),
-                        //Text(
-                          //'Level of Susteinability',
-                          //style: _TextButtonStyle_HomePage,
-                        //),
-                        //SizedBox(height: 10),
-                        SfRadialGauge(
-                          title: GaugeTitle(text: 'Level of Susteinability',textStyle: _TextButtonStyle_HomePage),
-                          axes: <RadialAxis>[RadialAxis(minimum: 0,maximum: 400,startAngle: 180,endAngle: 0,interval: 50,
+                      //alignment: Alignment.topCenter,
+                      children: [
+                        SizedBox(height: 10),
+                        Text(
+                          'Level of Susteinability',
+                          style: _TextButtonStyle_HomePage,
+                        ),
+                        SizedBox(height: 160, width: 180,
+                        child: SfRadialGauge(
+                          //enableLoadingAnimation = false,
+                          //animationDuration: 2000,
+                          //title: GaugeTitle(text: 'Level of Susteinability',textStyle: _TextButtonStyle_HomePage),
+                          axes: <RadialAxis>[RadialAxis(minimum: 0,maximum: 400,startAngle: 180,endAngle: 0,interval: 100,
+                          radiusFactor: 1.2,
                           canScaleToFit: true,
-                          axisLineStyle: AxisLineStyle(thickness: 40),
+                          axisLineStyle: AxisLineStyle(thickness:10 ),
+                          labelOffset: 12,
+                          showAxisLine: true,
                           ranges: <GaugeRange>[
-                                      GaugeRange(startValue: 0, endValue: 50, color:Colors.red),
-                                      GaugeRange(startValue: 50,endValue: 100,color:  Colors.redAccent),
-                                      GaugeRange(startValue: 100,endValue: 150,color: Colors.deepOrange),
-                                      GaugeRange(startValue: 150, endValue: 200, color:Colors.orange ),
-                                      GaugeRange(startValue: 200,endValue: 250,color: Colors.yellow),
-                                      GaugeRange(startValue: 250,endValue: 300,color:  Colors.yellowAccent),
-                                      GaugeRange(startValue: 300,endValue: 350,color:Colors.lightGreen),
-                                      GaugeRange(startValue: 350,endValue: 400,color: Colors.green)],
-                                  pointers: <GaugePointer>[NeedlePointer(value: _levelOfSusteinability())],
+                                      GaugeRange(startValue: 0, endValue: 100, color:Colors.red),
+                                      GaugeRange(startValue: 100,endValue: 200,color: Colors.orange),
+                                      GaugeRange(startValue: 200,endValue: 300,color: Colors.yellow),
+                                      GaugeRange(startValue: 300,endValue: 400,color: Colors.green)],
+                                  pointers: <GaugePointer>[MarkerPointer(value: _levelOfSusteinability(), 
+                                                                          markerType: MarkerType.diamond,markerHeight: 15,color: Colors.black,
+                                                                          enableAnimation: true,) ],
                                   annotations: <GaugeAnnotation>[GaugeAnnotation(widget: Container(child: 
-                                                        Text(_levelOfSusteinability().toString(),style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))),
-                                                        angle: 90, positionFactor: 0.5)]
+                                                        Text(_levelOfSusteinability().toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold))),
+                                                        angle: 90, positionFactor: 0)]
                           ),
                           ]
-                        ),
+                        ),)
+                        ]
+
 
                         //AnimatedDigitWidget(value: 324,textStyle: _TextButtonStyle_HomePage,),
                         //Icon(
