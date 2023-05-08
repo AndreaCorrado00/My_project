@@ -267,7 +267,7 @@ class HomePage extends State<HomePageState> {
                       children: [
                         SizedBox(height: 10),
                         Text(
-                          'Level of Susteinability',
+                          'Level of Sustainability',
                           style: _TextButtonStyle_HomePage,
                         ),
                         SizedBox(height: 160, width: 180,
