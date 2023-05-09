@@ -13,9 +13,9 @@ import 'package:my_project/Database/Advice_Database.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 // ------------- Everything must be readed before creating the homepage
 
 // Using DateTime to read the date and handling the daily advice
@@ -53,8 +53,8 @@ class HomePage extends State<HomePageState> {
         fontFamily: myfontFamily,
         fontSize: 20.0,
       ));
-  static final _TextButtonStyle_HomePage = TextStyle(
-    fontFamily: myfontFamily,
+
+  static final _TextButtonStyle_HomePage = GoogleFonts.roboto(
     fontSize: 25.0,
     color: secondaryColor,
   );
@@ -270,40 +270,75 @@ class HomePage extends State<HomePageState> {
                           'Level of Sustainability',
                           style: _TextButtonStyle_HomePage,
                         ),
-                        SizedBox(height: 160, width: 180,
-                        child: SfRadialGauge(
-                          //enableLoadingAnimation = false,
-                          //animationDuration: 2000,
-                          //title: GaugeTitle(text: 'Level of Susteinability',textStyle: _TextButtonStyle_HomePage),
-                          axes: <RadialAxis>[RadialAxis(minimum: 0,maximum: 400,startAngle: 180,endAngle: 0,interval: 100,
-                          radiusFactor: 1.2,
-                          canScaleToFit: true,
-                          axisLineStyle: AxisLineStyle(thickness:10 ),
-                          labelOffset: 12,
-                          showAxisLine: true,
-                          ranges: <GaugeRange>[
-                                      GaugeRange(startValue: 0, endValue: 100, color:Colors.red),
-                                      GaugeRange(startValue: 100,endValue: 200,color: Colors.orange),
-                                      GaugeRange(startValue: 200,endValue: 300,color: Colors.yellow),
-                                      GaugeRange(startValue: 300,endValue: 400,color: Colors.green)],
-                                  pointers: <GaugePointer>[MarkerPointer(value: _levelOfSusteinability(), 
-                                                                          markerType: MarkerType.diamond,markerHeight: 15,color: Colors.black,
-                                                                          enableAnimation: true,) ],
-                                  annotations: <GaugeAnnotation>[GaugeAnnotation(widget: Container(child: 
-                                                        Text(_levelOfSusteinability().toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold))),
-                                                        angle: 90, positionFactor: 0)]
-                          ),
-                          ]
-                        ),)
-                        ]
+                        SizedBox(
+                          height: 160,
+                          width: 180,
+                          child: SfRadialGauge(
+                              //enableLoadingAnimation = false,
+                              //animationDuration: 2000,
+                              //title: GaugeTitle(text: 'Level of Susteinability',textStyle: _TextButtonStyle_HomePage),
+                              axes: <RadialAxis>[
+                                RadialAxis(
+                                    minimum: 0,
+                                    maximum: 400,
+                                    startAngle: 180,
+                                    endAngle: 0,
+                                    interval: 100,
+                                    radiusFactor: 1.2,
+                                    canScaleToFit: true,
+                                    axisLineStyle: AxisLineStyle(thickness: 10),
+                                    labelOffset: 12,
+                                    showAxisLine: true,
+                                    ranges: <GaugeRange>[
+                                      GaugeRange(
+                                          startValue: 0,
+                                          endValue: 100,
+                                          color: Colors.red),
+                                      GaugeRange(
+                                          startValue: 100,
+                                          endValue: 200,
+                                          color: Colors.orange),
+                                      GaugeRange(
+                                          startValue: 200,
+                                          endValue: 300,
+                                          color: Colors.yellow),
+                                      GaugeRange(
+                                          startValue: 300,
+                                          endValue: 400,
+                                          color: Colors.green)
+                                    ],
+                                    pointers: <GaugePointer>[
+                                      MarkerPointer(
+                                        value: _levelOfSusteinability(),
+                                        markerType: MarkerType.diamond,
+                                        markerHeight: 15,
+                                        color: Colors.black,
+                                        enableAnimation: true,
+                                      )
+                                    ],
+                                    annotations: <GaugeAnnotation>[
+                                      GaugeAnnotation(
+                                          widget: Container(
+                                              child: Text(
+                                                  _levelOfSusteinability()
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold))),
+                                          angle: 90,
+                                          positionFactor: 0)
+                                    ]),
+                              ]),
+                        )
+                      ]
 
-
-                        //AnimatedDigitWidget(value: 324,textStyle: _TextButtonStyle_HomePage,),
-                        //Icon(
-                          //IconData(0xe07e, fontFamily: 'MaterialIcons'),
-                          //color: secondaryColor,
-                          //size: 30.0,
-                        //)
+                      //AnimatedDigitWidget(value: 324,textStyle: _TextButtonStyle_HomePage,),
+                      //Icon(
+                      //IconData(0xe07e, fontFamily: 'MaterialIcons'),
+                      //color: secondaryColor,
+                      //size: 30.0,
+                      //)
                       )),
             ),
             SizedBox(height: 30),
