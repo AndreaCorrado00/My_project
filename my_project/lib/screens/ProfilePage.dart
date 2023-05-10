@@ -141,7 +141,7 @@ static const routename = 'ProfileScreen';
                         minRadius: 60.0,
                         child: CircleAvatar(
                           radius: 50.0,
-                          backgroundImage: AssetImage('assets/images/Laurea-13.jpg'),
+                          backgroundImage: AssetImage('assets/images/image00015.jpg'),
                         ),
                       ),
                       //CircleAvatar(
