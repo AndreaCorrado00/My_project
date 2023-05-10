@@ -1,21 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:my_project/screens/AddActivity.dart';
-import 'package:my_project/screens/CurrentTarget.dart';
+import 'package:my_project/screens/AboutThisApp.dart';
 import 'package:my_project/screens/LoginPage.dart';
 import 'package:my_project/screens/ProfilePage.dart';
 import 'package:my_project/screens/StatisticsPage.dart';
 import 'package:my_project/screens/TipsPage.dart';
-import 'package:my_project/screens/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:my_project/Database/Advice_Database.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:my_project/utils/constants.dart';
 // ------------- Everything must be readed before creating the homepage
 
 // Using DateTime to read the date and handling the daily advice
@@ -27,7 +24,7 @@ final Uri _url = Uri.parse(Advices[today_index]['url']);
 
 // Computing of the level of susteinabilty
 // My idea: probably the level could be computed by using a shered preferences dictionaty. Ence, everytime you upload a new activity (even if not automatically)
-// an istance of the shared preferences "database" (because is not a real one) is udated. Than, the function could read all the elements and use them to evaluate
+// an istance of the shared preferences "database" (because is not a real one) is updated. The function could read all the elements and use them to evaluate
 // the value of LoS. Then the current value is udated and can be passed to the widget below
 
 double _levelOfSusteinability() {
@@ -44,32 +41,9 @@ class HomePageState extends StatefulWidget {
 
 class HomePage extends State<HomePageState> {
   // Constants of building
-  static final _TextButtonStyle_Drawer = TextButton.styleFrom(
-      foregroundColor: secondarylightColor,
-      shadowColor: secondaryColor,
-      fixedSize: const Size(250, 50),
-      alignment: const Alignment(-0.95, 0),
-      textStyle: const TextStyle(
-        fontFamily: myfontFamily,
-        fontSize: 20.0,
-      ));
-
-  static final _TextButtonStyle_HomePage = GoogleFonts.roboto(
-    fontSize: 25.0,
-    color: secondaryColor,
-  );
-
-  static final _TextButtonStyle_Alert = TextButton.styleFrom(
-      foregroundColor: secondaryColor,
-      shadowColor: secondarylightColor,
-      textStyle: const TextStyle(
-        fontFamily: myfontFamily,
-        fontSize: 15.0,
-      ));
-
   static const routename = 'Homepage';
 
-//-------------- Index used trought the code to build widgets
+  //-------------- Index used trought the code to build widgets
   int _selectedIndex = 0;
 
   @override
@@ -79,11 +53,11 @@ class HomePage extends State<HomePageState> {
     print('${HomePage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColor,
+        backgroundColor: Constants.primaryColor,
         title: Text(HomePage.routename),
       ),
       drawer: Drawer(
-        backgroundColor: secondaryColor,
+        backgroundColor: Constants.secondaryColor,
         child: Column(
           children: [
             SizedBox(
@@ -92,7 +66,7 @@ class HomePage extends State<HomePageState> {
             Row(
               children: [
                 TextButton(
-                  style: _TextButtonStyle_Drawer,
+                  style: Constants.TextButtonStyle_Drawer,
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => ProfilePage()));
@@ -101,7 +75,7 @@ class HomePage extends State<HomePageState> {
                 ),
                 Icon(
                   IconData(0xe491, fontFamily: 'MaterialIcons'),
-                  color: secondarylightColor,
+                  color: Constants.secondarylightColor,
                   size: 24.0,
                 ),
               ],
@@ -113,18 +87,18 @@ class HomePage extends State<HomePageState> {
             Row(
               children: [
                 TextButton(
-                  style: _TextButtonStyle_Drawer,
+                  style: Constants.TextButtonStyle_Drawer,
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => StatisticsPage()));
+                            builder: (context) => AboutThisAppState()));
                   },
-                  child: const Text('Statistics'),
+                  child: const Text('About this App'),
                 ),
                 Icon(
-                  IconData(0xebef, fontFamily: 'MaterialIcons'),
-                  color: secondarylightColor,
+                  Icons.help_outline,
+                  color: Constants.secondarylightColor,
                   size: 24.0,
                 ),
               ],
@@ -136,28 +110,7 @@ class HomePage extends State<HomePageState> {
             Row(
               children: [
                 TextButton(
-                  style: _TextButtonStyle_Drawer,
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TipsPage()));
-                  },
-                  child: const Text('Advice and Tips'),
-                ),
-                Icon(
-                  Icons.tips_and_updates,
-                  color: secondarylightColor,
-                  size: 24.0,
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 300,
-              height: 1,
-            ),
-            Row(
-              children: [
-                TextButton(
-                  style: _TextButtonStyle_Drawer,
+                  style: Constants.TextButtonStyle_Drawer,
                   onPressed: () {
                     _OnLogoutTapConfirm(context);
                   },
@@ -165,7 +118,7 @@ class HomePage extends State<HomePageState> {
                 ),
                 Icon(
                   IconData(0xe3b3, fontFamily: 'MaterialIcons'),
-                  color: secondarylightColor,
+                  color: Constants.secondarylightColor,
                   size: 24.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
@@ -178,7 +131,7 @@ class HomePage extends State<HomePageState> {
           ],
         ),
       ),
-      backgroundColor: primaryLightColor,
+      backgroundColor: Constants.primaryLightColor,
 
       body: Align(
         alignment: Alignment.topCenter,
@@ -191,7 +144,7 @@ class HomePage extends State<HomePageState> {
               child: Container(
                 height: 280,
                 width: 330,
-                color: thirdColor,
+                color: Constants.thirdColor,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -201,9 +154,9 @@ class HomePage extends State<HomePageState> {
                     Text(
                       'Curiosity of the day',
                       style: TextStyle(
-                          color: secondaryColor,
+                          color: Constants.secondaryColor,
                           fontSize: 20,
-                          fontFamily: myfontFamily,
+                          fontFamily: Constants.myfontFamily,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
@@ -214,8 +167,8 @@ class HomePage extends State<HomePageState> {
                       child: Text(
                         'Do you know?',
                         style: TextStyle(
-                            color: secondaryColor,
-                            fontFamily: myfontFamily,
+                            color: Constants.secondaryColor,
+                            fontFamily: Constants.myfontFamily,
                             fontSize: 15,
                             fontWeight: FontWeight.bold),
                       ),
@@ -244,7 +197,7 @@ class HomePage extends State<HomePageState> {
                           'Learn more',
                           style: TextStyle(
                               color: Color.fromARGB(255, 0, 174, 255),
-                              fontFamily: myfontFamily,
+                              fontFamily: Constants.myfontFamily,
                               fontSize: 15,
                               fontWeight: FontWeight.bold),
                         ),
@@ -260,7 +213,7 @@ class HomePage extends State<HomePageState> {
               child: Container(
                   height: 200,
                   width: 330,
-                  color: thirdColor,
+                  color: Constants.thirdColor,
                   child: Column(
 
                       //alignment: Alignment.topCenter,
@@ -268,7 +221,7 @@ class HomePage extends State<HomePageState> {
                         SizedBox(height: 10),
                         Text(
                           'Level of Sustainability',
-                          style: _TextButtonStyle_HomePage,
+                          style: Constants.TextButtonStyle_HomePage,
                         ),
                         SizedBox(
                           height: 160,
@@ -352,23 +305,23 @@ class HomePage extends State<HomePageState> {
                       child: Container(
                           height: 150,
                           width: 150,
-                          color: thirdColor,
+                          color: Constants.thirdColor,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   'Trees',
-                                  style: _TextButtonStyle_HomePage,
+                                  style: Constants.TextButtonStyle_HomePage,
                                 ),
                                 SizedBox(height: 20),
                                 AnimatedDigitWidget(
                                   value: 1254,
-                                  textStyle: _TextButtonStyle_HomePage,
+                                  textStyle: Constants.TextButtonStyle_HomePage,
                                 ),
                                 Icon(
                                   IconData(0xf0603,
                                       fontFamily: 'MaterialIcons'),
-                                  color: secondaryColor,
+                                  color: Constants.secondaryColor,
                                   size: 30.0,
                                 )
                               ])),
@@ -379,22 +332,22 @@ class HomePage extends State<HomePageState> {
                       child: Container(
                           height: 150,
                           width: 150,
-                          color: thirdColor,
+                          color: Constants.thirdColor,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   'Total steps',
-                                  style: _TextButtonStyle_HomePage,
+                                  style: Constants.TextButtonStyle_HomePage,
                                 ),
                                 SizedBox(height: 20),
                                 AnimatedDigitWidget(
                                   value: 125436,
-                                  textStyle: _TextButtonStyle_HomePage,
+                                  textStyle: Constants.TextButtonStyle_HomePage,
                                 ),
                                 Icon(
                                   IconData(0xf6bd, fontFamily: 'MaterialIcons'),
-                                  color: secondaryColor,
+                                  color: Constants.secondaryColor,
                                   size: 30.0,
                                 )
                               ])),
@@ -412,17 +365,17 @@ class HomePage extends State<HomePageState> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.crisis_alert),
-            label: 'Current Target',
+            icon: Icon(Icons.tips_and_updates),
+            label: 'Advice and Tips',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box),
-            label: 'New Manual Activity',
+            icon: Icon(Icons.insights),
+            label: 'Statistics',
           ),
         ],
         currentIndex: _selectedIndex,
-        backgroundColor: primaryColor,
-        selectedItemColor: secondarylightColor,
+        backgroundColor: Constants.primaryColor,
+        selectedItemColor: Constants.secondarylightColor,
         selectedFontSize: 14.0,
         type: BottomNavigationBarType.fixed,
         onTap: (int index) {
@@ -439,12 +392,12 @@ class HomePage extends State<HomePageState> {
             //break;
             case 1:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const CurrentTargetState()));
+                  builder: (context) => const TipsPage()));
 
             //break;
             case 2:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const AddActivityState()));
+                  builder: (context) => const StatisticsPage()));
               // Probably in this case you have to put an if: if the index is not pointing the home and you are in the case of the home, return to home
               break;
           }
@@ -484,14 +437,14 @@ class HomePage extends State<HomePageState> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePageState()));
       },
-      style: _TextButtonStyle_Alert,
+      style: Constants.TextButtonStyle_Alert,
     );
     Widget continueButton = TextButton(
       child: Text("Continue"),
       onPressed: () {
         _Logout(context);
       },
-      style: _TextButtonStyle_Alert,
+      style: Constants.TextButtonStyle_Alert,
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
@@ -501,7 +454,7 @@ class HomePage extends State<HomePageState> {
         cancelButton,
         continueButton,
       ],
-      backgroundColor: primaryLightColor,
+      backgroundColor: Constants.primaryLightColor,
     );
     // show the dialog
     showDialog(

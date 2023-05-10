@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/HomePage.dart';
 import 'package:flutter_login/flutter_login.dart';
-import 'constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:my_project/utils/constants.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -71,15 +71,15 @@ class _LoginPageState extends State<LoginPage> {
       onRecoverPassword: _recoverPassword,
       onSubmitAnimationCompleted: () async{_toHomePage(context);},
       theme: LoginTheme(
-        pageColorLight: primaryColor,
-        primaryColor: secondaryColor,
-        accentColor: secondarylightColor,
+        pageColorLight: Constants.primaryColor,
+        primaryColor: Constants.secondaryColor,
+        accentColor: Constants.secondarylightColor,
         errorColor: Colors.deepOrange,
         
         // ignore: prefer_const_constructors
         titleStyle: TextStyle(
-          color: primaryLightColor,
-          fontFamily: myfontFamily,
+          color: Constants.primaryLightColor,
+          fontFamily: Constants.myfontFamily,
           letterSpacing: 4,),
         ),
         
