@@ -48,6 +48,7 @@ dependencies:
   syncfusion_flutter_gauges: ^21.2.3
   google_fonts: ^4.0.4
   http: ^0.13.6
+  jwt_decoder: ^2.0.1
   
   
 dev_dependencies:
