@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_project/screens/HomePage.dart';
 import 'package:my_project/screens/TipsPage.dart';
 import 'package:my_project/utils/constants.dart';
+import 'package:floor/floor.dart';
 
 class StatisticsPage extends StatefulWidget {
  const StatisticsPage ({super.key});
@@ -18,6 +19,7 @@ class StatisticsPageState extends State<StatisticsPage> {
 
 
 static const routename = 'StatisticsPage';
+
   @override
   Widget build(BuildContext context) {
     print('${StatisticsPageState.routename} built');
