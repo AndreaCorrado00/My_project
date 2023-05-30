@@ -8,6 +8,7 @@ import 'package:my_project/screens/StatisticsPage.dart';
 import 'package:my_project/screens/TipsPage.dart';
 import 'package:intl/intl.dart';
 import 'package:my_project/Database/Advice_Database.dart';
+import 'package:my_project/screens/databaseCodes.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -92,7 +93,7 @@ class HomePage extends State<HomePageState> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AboutThisAppState()));
+                            builder: (context) => databaseCodes()));
                   },
                   child: const Text('About this App'),
                 ),

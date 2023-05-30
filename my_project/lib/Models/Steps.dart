@@ -5,10 +5,15 @@ class Steps{
   final int value;
 
   Steps({required this.time, required this.value});
+  
 
   Steps.fromJson(String date, Map<String, dynamic> json) :
       time = DateFormat('yyyy-MM-dd HH:mm:ss').parse('$date ${json["time"]}'),
       value = int.parse(json["value"]);
+  
+  int getValue(){
+    return value;
+  }
 
   @override
   String toString() {

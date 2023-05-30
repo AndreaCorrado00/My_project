@@ -200,6 +200,7 @@ class TipsPageState extends State<TipsPage> {
   }
   
   Future _getStep()async{
+    //_getAndStoreTokens();
     final sp=await SharedPreferences.getInstance();
     var access=sp.getString('access');
     if (access == null){

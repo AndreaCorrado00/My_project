@@ -18,7 +18,7 @@ class $FloorAppDatabase {
   /// Once a database is built, you should keep a reference to it and re-use it.
   static _$AppDatabaseBuilder inMemoryDatabaseBuilder() =>
       _$AppDatabaseBuilder(null);
-}
+}   
 
 class _$AppDatabaseBuilder {
   _$AppDatabaseBuilder(this.name);
@@ -85,7 +85,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Todo` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Todo` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `daily_steps` INTEGER NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -104,10 +104,21 @@ class _$TodoDao extends TodoDao {
     this.database,
     this.changeListener,
   )   : _queryAdapter = QueryAdapter(database),
-        _todoInsertionAdapter = InsertionAdapter(database, 'Todo',
-            (Todo item) => <String, Object?>{'id': item.id, 'name': item.name}),
-        _todoDeletionAdapter = DeletionAdapter(database, 'Todo', ['id'],
-            (Todo item) => <String, Object?>{'id': item.id, 'name': item.name});
+        _todoInsertionAdapter = InsertionAdapter(
+            database,
+            'Todo',
+            (Todo item) => <String, Object?>{
+                  'id': item.id,
+                  'daily_steps': item.daily_steps
+                }),
+        _todoDeletionAdapter = DeletionAdapter(
+            database,
+            'Todo',
+            ['id'],
+            (Todo item) => <String, Object?>{
+                  'id': item.id,
+                  'daily_steps': item.daily_steps
+                });
 
   final sqflite.DatabaseExecutor database;
 
@@ -123,7 +134,7 @@ class _$TodoDao extends TodoDao {
   Future<List<Todo>> findAllTodos() async {
     return _queryAdapter.queryList('SELECT * FROM Todo',
         mapper: (Map<String, Object?> row) =>
-            Todo(row['id'] as int?, row['name'] as String));
+            Todo(row['id'] as int?, row['daily_steps'] as int));
   }
 
   @override

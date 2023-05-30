@@ -9,9 +9,9 @@ class Todo {
   final int? id; 
 
   //For the sake of simplicity, a Todo has only a name.
-  final String name;
+  final int daily_steps; 
 
   //Default constructor
-  Todo(this.id, this.name);
+  Todo(this.id, this.daily_steps);
   
 }//Todo

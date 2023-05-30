@@ -1,4 +1,4 @@
-import 'dart:js';
+//import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:my_project/screens/LoginPage.dart';
@@ -20,7 +20,7 @@ Future<void> main() async {
   //Here, we run the app and we provide to the whole widget tree the instance of the DatabaseRepository. 
   //That instance will be then shared through the platform and will be unique.
   runApp(ChangeNotifierProvider<DatabaseRepository>(create: (context)=>databaseRepository,
-    child: MyApp()));}
+    child: MyApp()));}  
 
 class MyApp extends StatelessWidget {
   @override
